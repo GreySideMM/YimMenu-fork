@@ -12,7 +12,8 @@ concurrency:
 
 jobs:
   build_nightly:
-    runs-on: [self-hosted, Windows]
+    runs-on: windows-latest
+    #runs-on: [self-hosted, Windows]
     name: Build Nightly
     outputs:
       full_sha: ${{ steps.var.outputs.full_sha }}
