@@ -89,10 +89,15 @@ jobs:
         with:
           ref: nightly
 
+      - name: Echo Commit Date
+        id: commit_date
+        run: |
+          echo $(git log -1 --format=%cd --date="format-local:%d %b %Y")
+
       - name: Nightly Release
         uses: softprops/action-gh-release@v1
         with:
-          name: Nightly [${{ needs.build_nightly.outputs.short_sha }}]
+          name: Nightly [${{ needs.commit_date.outputs.commit_date }}]
           tag_name: nightly
           body: |
             **This release has been built by Github Actions**
